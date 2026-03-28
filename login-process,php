@@ -28,15 +28,16 @@ if (mysqli_num_rows($result) > 0) {
         $_SESSION['user_email'] = $email;
         $_SESSION['user_id'] = $row['id'];
 		//link
-        header('Location: reservation.php');
+        header('Location: memberregistration.php');
         exit();
     } else {
 		//link
-        header('Location: login-failed.php');
+        header('Location: login-fail.php');
         exit();
     }
 } else {
-    header('Location: login-failed.php');
+    //link
+    header('Location: login-fail.php');
     exit();
 }
 //end connect
