@@ -1,0 +1,44 @@
+<?php
+session_start();
+
+//database setting
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "boardgame_cafe";
+
+//connnect database
+$conn = mysqli_connect($servername, $username, $password, $dbname);
+
+//get email and password
+$email = mysqli_real_escape_string($conn, $_POST['email']);
+$password = $_POST['password'];
+
+//query match data "email"
+$sql = "SELECT * FROM members WHERE email = '$email'";
+$result = mysqli_query($conn, $sql);
+
+//check exists?
+if (mysqli_num_rows($result) > 0) {
+	//get user data
+    $row = mysqli_fetch_assoc($result);
+	//Verify password
+    if (password_verify($password, $row['password'])) {
+		//store
+        $_SESSION['user_email'] = $email;
+        $_SESSION['user_id'] = $row['id'];
+		//link
+        header('Location: reservation.php');
+        exit();
+    } else {
+		//link
+        header('Location: login-failed.php');
+        exit();
+    }
+} else {
+    header('Location: login-failed.php');
+    exit();
+}
+//end connect
+mysqli_close($conn);
+?>
