@@ -65,11 +65,11 @@ if (isset($_SESSION['user_email'])) {
                 <button type="submit" class="w-full bg-brand-subtitle text-white py-3 rounded-md font-bold transition-colors duration-300 hover:bg-brand-title">Login</button>
             </form>
             
-			<!-- links-->
+			<!-- link-->
             <div class="text-center mt-6">
-                <a href="register.php" class="text-brand-subtitle hover:text-brand-title">Don't have an account? Register</a>
+                <a href="memberregistration.php" class="text-brand-subtitle hover:text-brand-title">Don't have an account? Register</a>
                 <span class="mx-2 text-gray-400">|</span>
-                <a href="introduction.php" class="text-brand-subtitle hover:text-brand-title">Back to Introduction</a>
+                <a href="introduction.html" class="text-brand-subtitle hover:text-brand-title">Back to Introduction</a>
             </div>
         </div>
     </main>
