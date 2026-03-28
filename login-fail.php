@@ -42,8 +42,9 @@
             <p class="text-brand-text mb-6">Invalid email or password. Please try again.</p>
             
             <div class="flex gap-4">
+                //link
                 <a href="login.php" class="flex-1 bg-brand-subtitle text-white py-3 rounded-md font-bold transition-colors duration-300 hover:bg-brand-title text-center">Try Again</a>
-                <a href="introduction.php" class="flex-1 bg-gray-400 text-white py-3 rounded-md font-bold transition-colors duration-300 hover:bg-gray-500 text-center">Back to Introduction</a>
+                <a href="introduction.html" class="flex-1 bg-gray-400 text-white py-3 rounded-md font-bold transition-colors duration-300 hover:bg-gray-500 text-center">Back to Introduction</a>
             </div>
         </div>
     </main>
