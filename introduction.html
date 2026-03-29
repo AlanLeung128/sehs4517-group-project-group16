@@ -1,26 +1,24 @@
 <!DOCTYPE html>
-<html lang="zh-en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cerebral Corner</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+
     <script>
-        tailwind.config = 
-        {
-            theme:
-            {
-                extend:
-                {
-                    fontFamily:
-                    {
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
                         'slackey': ['Slackey', 'sans-serif'],
+                        'sans': ['Helvetica Neue', 'Arial', 'sans-serif'],
                     },
-                    colors:
-                    {
+                    colors: {
                         'brand-bg': '#F5EFE6',
                         'brand-text': '#4A3933',
                         'brand-header': 'rgba(62, 44, 27, 0.8)',
@@ -33,7 +31,7 @@
         }
     </script>
 </head>
-<body class="bg-brand-bg text-brand-text font-['Helvetica_Neue'] leading-relaxed">
+<body class="bg-brand-bg text-brand-text font-sans leading-relaxed">
     <header class="bg-brand-header text-brand-header-text p-8 text-center">
         <img 
             src="logo.png" 
@@ -69,12 +67,13 @@
             </p>
         </section>
         <nav class="text-center my-8">
-            <a href="registration.html" class="inline-block bg-brand-subtitle text-white py-3 px-6 mx-2 rounded-md text-base font-bold transition-colors duration-300 hover:bg-brand-title">Register now</a>
-            <a href="login.html" class="inline-block bg-brand-subtitle text-white py-3 px-6 mx-2 rounded-md text-base font-bold transition-colors duration-300 hover:bg-brand-title">Login to book</a>
+            <a href="registration.php" class="inline-block bg-brand-subtitle text-white py-3 px-6 mx-2 rounded-md text-base font-bold transition-colors duration-300 hover:bg-brand-title">Register now</a>
+            <a href="login.php" class="inline-block bg-brand-subtitle text-white py-3 px-6 mx-2 rounded-md text-base font-bold transition-colors duration-300 hover:bg-brand-title">Login to book</a>
         </nav>
     </main>
     <footer class="text-center p-5 mt-10 bg-brand-header text-brand-header-text">
         <p>&copy; 2026 Cerebral Corner. All Rights Reserved.</p>
     </footer>
+
 </body>
 </html>
