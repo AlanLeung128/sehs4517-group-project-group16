@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Member Registration - Boardgame Cafe</title>
+</head>
+<body>
+  <div class="container">
+    <h1 style="margin-top:0; margin-bottom:6px;">Member Registration</h1>
+    <p class="note">Please fill in the following for register</p>
 
+    <form id="memberRegisterForm" method="POST" action="/register">
+
+      <div style="margin-bottom:12px;">
+        <label for="name">Last Name: </label>
+        <input id="lastname" name="lastname" type="text"/>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label for="name">First Name: </label>
+        <input id="lastname" name="lastname" type="text"/>
+      </div>
+      
+      <div style="margin-bottom:12px;">
+        <label for="address">Mail address</label>
+        <textarea id="address" name="address" ></textarea>
+      </div>
+
+      <div class="row" style="margin-bottom:12px;">
+        <div class="col">
+          <label for="phone">Contact Phone Number</label>
+          <input id="phone" name="phone" type="tel" />
+        </div>
+        <div class="col">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" />
+        </div>
+      </div>
+
+      <div style="margin-bottom:6px;">
+        <label for="password">Password</label>
+        <input id="password" name="password" type="password" />
+      </div>
+
+      <div class="actions">
+        <button type="submit" class="btn-primary">Register</button>
+
+        <button type="button" id="clearBtn" class="btn-secondary">Clear</button>
+
+        <div class="links">
+          <a href="/" style="color:#2563eb; text-decoration:none;">Returm to the login page</a>
+          &nbsp;|&nbsp;
+          <a href="/login" style="color:#2563eb; text-decoration:none;">Log in to make an appointment</a>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('clearBtn').addEventListener('click', function () {
+      document.getElementById('memberRegisterForm').reset();
+    });
+
+  </script>
+</body>
+</html>
