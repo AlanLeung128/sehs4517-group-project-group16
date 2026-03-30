@@ -98,8 +98,7 @@
                 <h3 class="text-2xl mb-6 flex items-center gap-3 text-[#4a3f35]">
                     <i class="fas fa-coffee"></i> Instant Coffee Sales
                 </h3>
-                <input type="text" id="coffeeCustomerPhone" 
-                       placeholder="Customer Phone (optional)" 
+                <input type="text" id="coffeeCustomerPhone" placeholder="Customer Phone (optional)" 
                        class="w-full p-4 rounded-2xl border border-[#d4b89e] focus:outline-none focus:border-[#8c6f4f] mb-6">
 
                 <div class="flex justify-end mb-4">
@@ -124,8 +123,7 @@
                 <h3 class="text-2xl mb-6 flex items-center gap-3 text-[#4a3f35]">
                     <i class="fas fa-gamepad"></i> Board Game Rental / Sale
                 </h3>
-                <input type="text" id="gameCustomerPhone" 
-                       placeholder="Customer Phone (optional)" 
+                <input type="text" id="gameCustomerPhone" placeholder="Customer Phone (optional)" 
                        class="w-full p-4 rounded-2xl border border-[#d4b89e] focus:outline-none focus:border-[#8c6f4f] mb-6">
 
                 <div class="flex justify-end mb-4">
@@ -155,11 +153,21 @@
             "Legendary Lounge (16 pax Private)"
         ];
 
+        const roomRates = {
+            "Table 1 (4 pax Public)": 80,
+            "Table 2 (4 pax Public)": 80,
+            "Table 3 (4 pax Public)": 80,
+            "Dragon Den (4 pax Private)": 100,
+            "Wizard’s Corner (4 pax Private)": 100,
+            "Epic Hall A (10 pax Private)": 200,
+            "Epic Hall B (10 pax Private)": 200,
+            "Legendary Lounge (16 pax Private)": 300
+        };
+
         let reservations = {};
         let records = [];
         let recordCounter = 0;
 
-        // Simple customer database (phone → customer ID + name)
         const customerDB = {
             "91234567": {id: "CUST001", name: "Chan Tai Man"},
             "98765432": {id: "CUST002", name: "Lam Siu Mei"},
@@ -255,25 +263,29 @@
         function quickAddWalkin(space, time) {
             if (document.getElementById('quickAddForm')) return;
 
+            const rate = roomRates[space] || 80;
             const inputHTML = `
                 <div id="quickAddForm" class="mt-8 bg-white p-6 rounded-3xl border border-[#d4b89e]">
-                    <p class="mb-4 font-medium">Add Walk-in Reservation - ${space} ${time}</p>
+                    <p class="mb-4 font-medium">Add Walk-in Reservation</p>
+                    <p class="text-sm text-gray-600 mb-4">${space} - ${time} (HK$ ${rate} per hour)</p>
                     <input type="text" id="quickCustomerPhone" placeholder="Customer Phone (optional)" 
                            class="w-full p-4 rounded-2xl border border-[#d4b89e] mb-4">
-                    <button onclick="confirmQuickAdd('${space}', '${time}')" 
-                            class="w-full bg-green-600 text-white py-4 rounded-3xl font-bold">Confirm Add</button>
+                    <button onclick="confirmQuickAdd('${space}', '${time}', ${rate})" 
+                            class="w-full bg-green-600 text-white py-4 rounded-3xl font-bold">Confirm Walk-in</button>
                 </div>`;
             document.getElementById('detailContent').innerHTML += inputHTML;
         }
 
-        function confirmQuickAdd(space, time) {
+        function confirmQuickAdd(space, time, rate) {
             const phone = document.getElementById('quickCustomerPhone').value.trim() || '';
             const lookup = lookupCustomer(phone);
             if (!reservations[space]) reservations[space] = [];
             reservations[space].push({time, customerId: lookup.id, name: lookup.name, phone: phone});
+
+            const amount = rate; // 目前以每小時計價，實際可依時段數調整
             hideDetail();
             renderSpaceCards();
-            addRecordRow('Walk-in Reservation', `${space} ${time}`, phone, lookup.name, lookup.id, 'HK$ 0');
+            addRecordRow('Walk-in Reservation', `${space} ${time} (HK$ ${rate}/hr)`, phone, lookup.name, lookup.id, `HK$ ${amount}`);
         }
 
         function addRecordRow(type, item, phone = '', name = 'Unknown', customerId = 'Unknown', amount = 'HK$ 0') {
@@ -300,6 +312,7 @@
                 </tr>
             `).join('');
         }
+        
 
         /* ==================== Sell Coffee ==================== */
         function addSellCoffeeRow() {
