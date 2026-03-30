@@ -46,10 +46,17 @@
                 </div>
             </div>
             
-            <a href="/view-today" 
-               class="bg-white text-brand-header px-6 py-3 rounded-3xl font-medium hover:bg-amber-100 transition-all">
-                View Today's Reservations
-            </a>
+            <!-- 右側按鈕：查看當日預約 + 登出 -->
+            <div class="flex gap-4">
+                <a href="/view-today" 
+                   class="bg-white text-brand-header px-6 py-3 rounded-3xl font-medium hover:bg-amber-100 transition-all">
+                    View Today's Reservations
+                </a>
+                <a href="/logout" 
+                   class="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-3xl font-medium transition-all">
+                    Logout
+                </a>
+            </div>
         </div>
     </header>
 
