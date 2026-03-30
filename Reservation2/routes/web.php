@@ -13,6 +13,10 @@ Route::post('/reservation', [ReservationController::class, 'store'])->name('rese
 Route::get('/view-today', [ReservationController::class, 'viewToday'])->name('view.today');
 Route::get('/thankyou', [ReservationController::class, 'thankyou'])->name('thankyou');
 
+//login
+Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+
 // 員工後台（暫時公開，之後可加 middleware 保護）
 Route::get('/staff/dashboard', function () {
     return view('staff.dashboard');
