@@ -1,1 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Booking - Boardgame Cafe</title>
+</head>
+<body>
+  <div class="container">
+    <h1>Booking Room/ table</h1>
+    <p class="note">Please fill in the following Information</p>
 
+    <form id="reservationForm" method="POST" action="/reservations">
+
+      <div class="grid-2" style="margin-bottom:12px;">
+        <div>
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" required />
+        </div>
+        <div>
+          <label for="people">People</label>
+          <input id="people" name="people" type="number" min="1" max="50" value="2" required />
+        </div>
+      </div>
+
+      <div class="row" style="margin-bottom:12px;">
+        <div class="col">
+          <label for="start_time">Start tiem</label>
+          <input id="start_time" name="start_time" type="time" required />
+        </div>
+        <div class="col">
+          <label for="end_time">End time</label>
+          <input id="end_time" name="end_time" type="time" required />
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label for="space">Space</label>
+        <select id="space" name="space" required>
+          <option value="">-- choose the type you want to book --</option>
+          <option value="open_table">Table</option>
+          <option value="private_room_small">Small room</option>
+          <option value="private_room_medium">Medium room</option>
+          <option value="private_room_large">Large room</option>
+        </select>
+      </div>
+
+      <hr style="border:none; height:1px; background:#eef2f7; margin:12px 0;" />
+
+      <div style="margin-bottom:12px;">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text"/>
+      </div>
+
+      <div class="grid-2" style="margin-bottom:12px;">
+        <div>
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" type="tel" />
+        </div>
+        <div>
+          <label for="email">Email </label>
+          <input id="email" name="email" type="email" />
+        </div>
+      </div>
+
+      <div style="margin-bottom:12px;">
+        <label for="notes">notes</label>
+        <textarea id="notes" name="notes"></textarea>
+      </div>
+
+      <div id="formError" class="error" style="display:none;"></div>
+
+      <div class="actions">
+        <button type="submit" class="btn-primary">Submit Reservation</button>
+        <button type="button" id="clearBtn" class="btn-secondary">Clear</button>
+        <div style="margin-left:auto; font-size:14px;">
+          <a href="/" style="color:#0ea5e9; text-decoration:none;">Return to login page</a>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('reservationForm');
+    const clearBtn = document.getElementById('clearBtn');
+    const errorBox = document.getElementById('formError');
+
+    clearBtn.addEventListener('click', () => {
+      form.reset();
+      errorBox.style.display = 'none';
+      errorBox.textContent = '';
+    });
+
+    form.addEventListener('submit', (e) => {
+      errorBox.style.display = 'none';
+      errorBox.textContent = '';
+
+      const dateEl = document.getElementById('date');
+      const startEl = document.getElementById('start_time');
+      const endEl = document.getElementById('end_time');
+
+      if (dateEl.value && startEl.value && endEl.value) {
+        const start = startEl.value;
+        const end = endEl.value;
+        if (end <= start) {
+          e.preventDefault();
+          errorBox.textContent = 'Start time should before the end time';
+          errorBox.style.display = 'block';
+          return;
+        }
+      }
+
+    });
+  </script>
+</body>
+</html>
