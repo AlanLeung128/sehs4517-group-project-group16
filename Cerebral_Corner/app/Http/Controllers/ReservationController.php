@@ -6,6 +6,7 @@ use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
@@ -102,9 +103,16 @@ class ReservationController extends Controller
         return view('view-today', compact('reservations', 'myBookings', 'today'));
     }
 
-    public function thankyou()
-    {
-        $reservations = session('reservations');
-        return view('thankyou', compact('reservations'));
+  public function thankyou()
+{
+    $reservations = session('reservations');
+
+    if (Auth::check()) {
+        $email = Auth::user()->email;
+    } else {
+        $email = session('user_email') ?? 'Not logged in yet';
     }
+
+    return view('thankyou', compact('reservations', 'email'));
+}
 }
