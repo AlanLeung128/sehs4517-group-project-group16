@@ -27,7 +27,6 @@
             }
         }
     </script>
-
 </head>
 <body class="bg-brand-bg text-brand-text font-sans leading-relaxed">
 
@@ -45,13 +44,19 @@
             <h2 class="font-slackey text-4xl text-brand-title mb-4">Thank You!</h2>
             <div class="w-16 h-1 bg-brand-subtitle mx-auto mb-8"></div>
             
-            <p class="text-xl mb-10">Your reservation has been successfully made.<br>We look forward to seeing you at Cerebral Corner!</p>
+            <p class="text-xl mb-10">Thank you for reserving your game session!<br>We look forward to seeing you at Cerebral Corner!</p>
 
             @if(isset($reservations) && count($reservations) > 0)
             <div class="bg-brand-bg/60 rounded-2xl p-8 text-left border border-brand-subtitle/30">
                 <h3 class="text-2xl font-bold text-brand-subtitle mb-6 border-b pb-3">Reservation Summary</h3>
                 
                 <div class="space-y-4 text-lg">
+                    
+                    <div class="flex justify-between">
+                        <span class="font-medium">Email Address:</span>
+                        <span class="font-bold">{{ $email }}</span>
+                    </div>
+
                     <div class="flex justify-between">
                         <span class="font-medium">Date:</span>
                         <span class="font-bold">{{ \Carbon\Carbon::parse($reservations[0]['date'])->format('Y-m-d') }}</span>
@@ -82,6 +87,11 @@
         <div class="text-center mt-10">
             <a href="{{ route('reservation.index') }}" class="inline-block bg-brand-subtitle hover:bg-brand-title text-white py-4 px-10 rounded-3xl text-xl font-bold transition-all">
                 Make Another Reservation
+            </a>
+        </div>
+        <div class="text-center mt-10">
+            <a href="{{ route('introduction') }}" class="inline-block bg-brand-subtitle hover:bg-brand-title text-white py-4 px-10 rounded-3xl text-xl font-bold transition-all">
+                OK
             </a>
         </div>
     </main>
