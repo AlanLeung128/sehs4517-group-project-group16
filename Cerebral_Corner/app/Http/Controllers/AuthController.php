@@ -37,9 +37,9 @@ class AuthController extends Controller
         // Check if member exists AND password is correct
         if ($member && Hash::check($request->password, $member->password)) {
             // Store member info in session
-            Session::put('member_id', $member->id);
-            Session::put('member_name', $member->firstname . ' ' . $member->lastname);
-            Session::put('member_email', $member->email);
+            Session::put('user_id', $member->id);
+            Session::put('user_name', $member->firstname . ' ' . $member->lastname);
+            Session::put('user_email', $member->email);
             
             // Redirect to reservation page
             return redirect()->route('reservation.index')->with('success', 'Welcome back, ' . $member->firstname . '!');
